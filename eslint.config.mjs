@@ -15,7 +15,7 @@ const compat = new FlatCompat({
   recommendedConfig: js.configs.recommended,
 })
 
-const eslintConfig = [
+const config = [
   includeIgnoreFile(gitignorePath),
   ...compat.config({
     env: {
@@ -62,4 +62,4 @@ const eslintConfig = [
   },
 ]
 
-export default eslintConfig
+export default config
