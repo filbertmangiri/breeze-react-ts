@@ -1,3 +1,5 @@
+import { AppProviders } from '@/app-providers'
+
 import '../css/app.css'
 import './bootstrap'
 
@@ -14,7 +16,11 @@ await createInertiaApp({
   setup({ el, App, props }) {
     const root = createRoot(el)
 
-    root.render(<App {...props} />)
+    root.render(
+      <AppProviders>
+        <App {...props} />
+      </AppProviders>,
+    )
   },
   progress: {
     color: '#4B5563',
