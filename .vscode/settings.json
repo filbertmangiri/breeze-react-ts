@@ -5,5 +5,15 @@
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.preferences.importModuleSpecifierEnding": "minimal",
 
-  "typescript.tsserver.experimental.enableProjectDiagnostics": true
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "[php]": {
+    "editor.defaultFormatter": "kokororin.vscode-phpfmt"
+  }
 }
