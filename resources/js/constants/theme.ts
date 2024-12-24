@@ -3,17 +3,17 @@ import { MonitorIcon, MoonIcon, SunIcon } from 'lucide-react'
 export const themeModes = [
   {
     name: 'light',
-    label: 'Terang',
+    label: 'Light',
     icon: SunIcon,
   },
   {
     name: 'dark',
-    label: 'Gelap',
+    label: 'Dark',
     icon: MoonIcon,
   },
   {
     name: 'system',
-    label: 'Sistem',
+    label: 'System',
     icon: MonitorIcon,
   },
 ]
@@ -53,7 +53,7 @@ export const themeColors = [
   },
   {
     name: 'neutral',
-    label: 'Netral',
+    label: 'Neutral',
     activeColor: {
       light: '0 0% 45.1%',
       dark: '0 0% 32.2%',
@@ -61,7 +61,7 @@ export const themeColors = [
   },
   {
     name: 'red',
-    label: 'Merah',
+    label: 'Red',
     activeColor: {
       light: '0 72.2% 50.6%',
       dark: '0 72.2% 50.6%',
@@ -69,7 +69,7 @@ export const themeColors = [
   },
   {
     name: 'rose',
-    label: 'Pink',
+    label: 'Rose',
     activeColor: {
       light: '346.8 77.2% 49.8%',
       dark: '346.8 77.2% 49.8%',
@@ -77,7 +77,7 @@ export const themeColors = [
   },
   {
     name: 'orange',
-    label: 'Oranye',
+    label: 'Orange',
     activeColor: {
       light: '24.6 95% 53.1%',
       dark: '20.5 90.2% 48.2%',
@@ -85,7 +85,7 @@ export const themeColors = [
   },
   {
     name: 'green',
-    label: 'Hijau',
+    label: 'Green',
     activeColor: {
       light: '142.1 76.2% 36.3%',
       dark: '142.1 70.6% 45.3%',
@@ -93,7 +93,7 @@ export const themeColors = [
   },
   {
     name: 'blue',
-    label: 'Biru',
+    label: 'Blue',
     activeColor: {
       light: '221.2 83.2% 53.3%',
       dark: '217.2 91.2% 59.8%',
@@ -101,7 +101,7 @@ export const themeColors = [
   },
   {
     name: 'yellow',
-    label: 'Kuning',
+    label: 'Yellow',
     activeColor: {
       light: '47.9 95.8% 53.1%',
       dark: '47.9 95.8% 53.1%',
@@ -109,7 +109,7 @@ export const themeColors = [
   },
   {
     name: 'violet',
-    label: 'Ungu',
+    label: 'Violet',
     activeColor: {
       light: '262.1 83.3% 57.8%',
       dark: '263.4 70% 50.4%',
