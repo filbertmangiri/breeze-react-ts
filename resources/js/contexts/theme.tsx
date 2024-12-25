@@ -7,7 +7,7 @@ const ThemeRadiusContext = React.createContext<UseThemeProps | undefined>(undefi
 type ThemeName = 'mode' | 'color' | 'radius'
 
 export const useTheme = (name: ThemeName) => {
-  return React.use(getThemeContextByName(name)) ?? defaultThemeContext
+  return React.use(getThemeContextByName(name)) ?? defaultContext
 }
 
 export const ThemeProvider = ({
@@ -37,31 +37,24 @@ const getThemeContextByName = (name: ThemeName) => {
   return ThemeRadiusContext
 }
 
-// This is from pacocoursey/next-themes
+// next-themes@0.4.4
 
-const colorSchemes = ['light', 'dark']
-const MEDIA = '(prefers-color-scheme: dark)'
-const isServer = typeof window === 'undefined'
-
-const defaultThemeContext: UseThemeProps = { setTheme: (_) => {}, themes: [] }
-
-const defaultThemes = ['light', 'dark']
-
-type ValueObject = {
+interface ValueObject {
   [themeName: string]: string
 }
 
 type DataAttribute = `data-${string}`
 
-type ScriptProps = React.DetailedHTMLProps<
-  React.ScriptHTMLAttributes<HTMLScriptElement>,
-  HTMLScriptElement
-> & {
+interface ScriptProps
+  extends React.DetailedHTMLProps<
+    React.ScriptHTMLAttributes<HTMLScriptElement>,
+    HTMLScriptElement
+  > {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [dataAttribute: DataAttribute]: any
 }
 
-type UseThemeProps = {
+interface UseThemeProps {
   /** List of all available theme names */
   themes: string[]
   /** Forced theme name for the current page */
@@ -78,7 +71,7 @@ type UseThemeProps = {
 
 type Attribute = DataAttribute | 'class'
 
-type ThemeProviderProps = React.PropsWithChildren & {
+interface ThemeProviderProps extends React.PropsWithChildren {
   /** List of all available theme names */
   themes?: string[] | undefined
   /** Forced theme name for the current page */
@@ -102,6 +95,13 @@ type ThemeProviderProps = React.PropsWithChildren & {
   /** Props to pass the inline script */
   scriptProps?: ScriptProps
 }
+
+const colorSchemes = ['light', 'dark']
+const MEDIA = '(prefers-color-scheme: dark)'
+const isServer = typeof window === 'undefined'
+const defaultContext: UseThemeProps = { setTheme: (_) => {}, themes: [] }
+
+const defaultThemes = ['light', 'dark']
 
 const Theme = ({
   Context,
@@ -170,7 +170,6 @@ const Theme = ({
 
       enable?.()
     },
-
     [nonce],
   )
 
@@ -186,13 +185,11 @@ const Theme = ({
       try {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         localStorage.setItem(storageKey, newTheme)
-
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (e) {
         // Unsupported
       }
     },
-
     [theme],
   )
 
@@ -205,7 +202,6 @@ const Theme = ({
         applyTheme('system')
       }
     },
-
     [theme, forcedTheme],
   )
 
@@ -236,7 +232,6 @@ const Theme = ({
     }
 
     window.addEventListener('storage', handleStorage)
-
     return () => window.removeEventListener('storage', handleStorage)
   }, [setTheme])
 
@@ -292,7 +287,7 @@ const ThemeScript = React.memo(
     themes,
     nonce,
     scriptProps,
-  }: Omit<ThemeProviderProps, 'children' | 'context'> & { defaultTheme: string }) => {
+  }: Omit<ThemeProviderProps, 'children'> & { defaultTheme: string }) => {
     const scriptArgs = JSON.stringify([
       attribute,
       storageKey,
@@ -321,7 +316,6 @@ const getTheme = (key: string, fallback?: string) => {
   let theme
   try {
     theme = localStorage.getItem(key) || undefined
-
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     // Unsupported
@@ -375,10 +369,10 @@ const script = (
 
     attributes.forEach((attr) => {
       const isClass = attr === 'class'
-      const classes = isClass && value ? themes.map((t: string) => value[t] || t) : themes
+      const classes = isClass && value ? themes.map((t) => value[t] || t) : themes
       if (isClass) {
         el.classList.remove(...classes)
-        el.classList.add(theme)
+        el.classList.add(value[theme] || theme)
       } else {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         el.setAttribute(attr, theme)
@@ -406,7 +400,6 @@ const script = (
       const isSystem = enableSystem && themeName === 'system'
       const theme = isSystem ? getSystemTheme() : themeName
       updateDOM(theme)
-
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
       //
