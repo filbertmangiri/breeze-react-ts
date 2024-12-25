@@ -1,4 +1,4 @@
-import { themeColors, themeRadiuses } from '@/constants/theme'
+import { themes } from '@/constants/themes'
 import { ThemeProvider } from '@/contexts/theme'
 
 export function AppProviders({ children }: { children: React.ReactNode }) {
@@ -15,7 +15,7 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
         attribute="data-ui-theme-color"
         storageKey="ui-theme-color"
         defaultTheme="neutral"
-        themes={themeColors.map(({ name }) => name)}
+        themes={themes.color.map(({ name }) => name)}
         disableTransitionOnChange
         enableColorScheme={false}
         enableSystem={false}
@@ -25,7 +25,7 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
           attribute="data-ui-theme-radius"
           storageKey="ui-theme-radius"
           defaultTheme="0.5"
-          themes={themeRadiuses}
+          themes={themes.radius}
           disableTransitionOnChange
           enableColorScheme={false}
           enableSystem={false}
