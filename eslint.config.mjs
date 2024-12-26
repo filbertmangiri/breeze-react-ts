@@ -28,7 +28,7 @@ const config = [
       browser: true,
       node: true,
     },
-    plugins: ['@typescript-eslint', 'prettier'],
+    plugins: ['@typescript-eslint', 'unused-imports', 'prettier'],
     extends: [
       'eslint:recommended',
       'plugin:@typescript-eslint/recommended-type-checked',
@@ -49,6 +49,8 @@ const config = [
       'react/prop-types': 'off',
       'react/no-unescaped-entities': 'off',
       'react-hooks/exhaustive-deps': 'off',
+
+      'unused-imports/no-unused-imports': 'error',
 
       'prettier/prettier': 'error',
       '@typescript-eslint/unbound-method': 'off',
